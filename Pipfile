@@ -6,6 +6,8 @@ name = "pypi"
 [packages]
 django = "*"
 gunicorn = "*"
+requests = "*"
+ipdb = "*"
 
 [dev-packages]
 
