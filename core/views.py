@@ -26,21 +26,29 @@ class N1AnalyticsClient(object):
     def __init__(self):
         super(N1AnalyticsClient, self).__init__()
 
-    def get_bank_runs(self):
-        url = "http://dataconnector.n1analytics.com:8000/v1/graphs/bankA-test/runs"
+    def get_bank_runs(self, hash):
+        url = "http://dataconnector.n1analytics.com:8000/v1/graphs/bank-200/runs"
         payload = {
           "typ": "http://schema.n1analytics.com/envelope/1",
           "pyl": {
             "@context": "https://schema.n1analytics.com/aml/1/investigationRequest",
-            "targetID": "bfb65c5925abc06df4e88d4e919d91bcf07bed093bad1726be8ef9cd302420d0",
+            "targetID": "4fd7584814066639ceaaaeacfc836abe06e806bb6238489e86846600ba9b0ce0",
+            #"targetID": hash,
             "threshold": 3
           }
         }
 
         response = requests.post(url, json=payload)
-        while response.json()["info"]["status"] == "RUNNING":
-            logger.debug(response.json()["info"]["status"])
-            response = requests.post(url, json=payload)
+        url = response.json()['@id']
+
+        response = requests.get(url)
+
+        try:
+            while response.json()["info"]["status"] == "RUNNING":
+                logger.debug(response.json()["info"]["status"])
+                response = requests.get(url)
+        except:
+            return HttpResponse(response.text)
 
         return JsonResponse(response.json())
 
