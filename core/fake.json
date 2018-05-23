@@ -1,0 +1,32 @@
+{
+    "@id": "http://dataconnector.n1analytics.com:8000/v1/graphs/bank-200/runs/7cd6ac6a-8ee4-423d-b5af-2d03a037c1cc",
+    "@context": "https://schema.n1analytics.com/api/graph/1/run/finished/result",
+    "res": {
+        "@context": "https://schema.n1analytics.com/aml/1/investigationReply",
+        "@se": "7cd6ac6a-8ee4-423d-b5af-2d03a037c1cc",
+        "targetID": "4fd7584814066639ceaaaeacfc836abe06e806bb6238489e86846600ba9b0ce0",
+        "receivers": {
+            "@context": "https://schema.n1analytics.com/aml/1/activityMap",
+            "activities": [
+                {
+                    "a": "ed830e6ae4766776eae838cf1d3e1af873aa10975f7cb8c9d72bf3a4ff545dd0",
+                    "c": 10
+                }
+            ]
+        }
+    },
+    "request": {
+        "@context": "https://schema.n1analytics.com/aml/1/investigationRequest",
+        "@se": "7cd6ac6a-8ee4-423d-b5af-2d03a037c1cc",
+        "targetID": "4fd7584814066639ceaaaeacfc836abe06e806bb6238489e86846600ba9b0ce0",
+        "threshold": 3
+    },
+    "info": {
+        "status": "COMPLETED",
+        "startDate": 1527088877953,
+        "startDateHumanReadable": "Wed May 23 15:21:17 UTC 2018",
+        "endDate": 1527088907278,
+        "endDateHumanReadable": "Wed May 23 15:21:47 UTC 2018",
+        "runTime": 29.324447936000002
+    }
+}

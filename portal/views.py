@@ -31,7 +31,9 @@ def subject_of_interest_request(request):
             hashed = hasher.name_to_hash(name)
 
             n1 = N1AnalyticsClient()
-            return n1.get_bank_runs(hashed)
+            response = n1.get_bank_runs(hashed)
+
+            return render(request, 'portal/home.html', {'form': form, 'response': response})
 
             pass  # does nothing, just trigger the validation
         else:
@@ -40,6 +42,13 @@ def subject_of_interest_request(request):
         form = SubjectOfInterestRequestForm()
     return render(request, 'portal/home.html', {'form': form})
 
+def subject_of_interest_request_detail(request):
+    token = request.GET["token"]
+
+    hasher = HashedNameServiceClient()
+    response = hasher.hash_to_name(token)
+
+    return render(request, 'portal/subject_of_interest_request_detail.html', {'token': token, 'response': response})
 
 class SubjectOfInterestRequestView(FormView):
     template_name = 'subject_of_interest_request.html'

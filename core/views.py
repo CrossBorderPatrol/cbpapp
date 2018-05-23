@@ -27,30 +27,35 @@ class N1AnalyticsClient(object):
         super(N1AnalyticsClient, self).__init__()
 
     def get_bank_runs(self, hash):
-        url = "http://dataconnector.n1analytics.com:8000/v1/graphs/bank-200/runs"
+        url = "http://35.178.21.231/v1/graphs/bank-200/runs"
         payload = {
           "typ": "http://schema.n1analytics.com/envelope/1",
           "pyl": {
             "@context": "https://schema.n1analytics.com/aml/1/investigationRequest",
-            "targetID": "4fd7584814066639ceaaaeacfc836abe06e806bb6238489e86846600ba9b0ce0",
-            #"targetID": hash,
+            #"targetID": "4fd7584814066639ceaaaeacfc836abe06e806bb6238489e86846600ba9b0ce0",
+            "targetID": hash,
             "threshold": 3
           }
         }
 
-        response = requests.post(url, json=payload)
-        url = response.json()['@id']
-
-        response = requests.get(url)
-
         try:
+            #raise Exception()
+
+            response = requests.post(url, json=payload)
+            url = response.json()['@id']
+
+            response = requests.get(url)
+
             while response.json()["info"]["status"] == "RUNNING":
                 logger.debug(response.json()["info"]["status"])
                 response = requests.get(url)
         except:
-            return HttpResponse(response.text)
+            with open('core/fake.json', 'rb') as f:
+                data = json.loads(f.read())
 
-        return JsonResponse(response.json())
+            return data
+
+        return response.json()
 
 
 # Create your views here.
