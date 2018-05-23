@@ -5,12 +5,12 @@ IDENTIFIER_CHOICES = (
 )
 
 class SubjectOfInterestRequestForm(forms.Form):
-    code_name = forms.CharField()
-    name = forms.CharField(required=True)
-    address = forms.CharField(widget=forms.Textarea)
+    code_name = forms.CharField(required=False)
+    name = forms.CharField()
+    address = forms.CharField(required=False, widget=forms.Textarea)
     #subject_identifier_type = forms.MultipleChoiceField(
     #    widget=forms.RadioSelect,
     #    choices=IDENTIFIER_CHOICES,
     #)
-    subject_identifier = forms.CharField()
-    account = forms.CharField()
+    subject_identifier = forms.CharField(required=False)
+    account = forms.CharField(required=False)
