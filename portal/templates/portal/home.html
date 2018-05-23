@@ -1,6 +1,6 @@
 {% extends "portal/base.html" %}
 {% block content %}
-<form action="/your-name/" method="post">
+<form action="" method="post">
     {% csrf_token %}
     {{ form.as_ul }}
     <input type="submit" value="Submit" />

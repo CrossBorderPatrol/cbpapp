@@ -1,9 +1,15 @@
-from django.http import HttpResponse, HttpResponseRedirect
+import json
+import logging
+
+from django.http import HttpResponse, HttpResponseRedirect, JsonResponse
 from django.shortcuts import render
 from django.urls import reverse
 from django.views.generic.edit import FormView
 
 from portal.forms import SubjectOfInterestRequestForm
+from core.views import HashedNameServiceClient, N1AnalyticsClient
+
+logger = logging.getLogger(__name__)
 
 # Create your views here.
 def index(request):
@@ -15,8 +21,21 @@ def index(request):
 def subject_of_interest_request(request):
     if request.method == 'POST':
         form = SubjectOfInterestRequestForm(request.POST)
+
         if form.is_valid():
+            #return JsonResponse(form.cleaned_data)
+
+            name = form.cleaned_data['name']
+            hasher = HashedNameServiceClient()
+
+            hashed = hasher.name_to_hash(name)
+
+            n1 = N1AnalyticsClient()
+            return n1.get_bank_runs(hashed)
+
             pass  # does nothing, just trigger the validation
+        else:
+            raise Exception(form.errors)
     else:
         form = SubjectOfInterestRequestForm()
     return render(request, 'portal/home.html', {'form': form})
