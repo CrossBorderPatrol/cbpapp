@@ -1,0 +1,25 @@
+{
+  "name": "cbpapp",
+  "description": "Cross Border Patrol",
+  "scripts": {
+  },
+  "env": {
+    "DISABLE_COLLECTSTATIC": {
+      "required": true
+    },
+    "DJANGO_SETTINGS_MODULE": "cbpapp.settings_staging"
+  },
+  "formation": {
+    "web": {
+      "quantity": 1
+    }
+  },
+  "addons": [
+    "heroku-postgresql"
+  ],
+  "buildpacks": [
+    {
+      "url": "heroku/python"
+    }
+  ]
+}
