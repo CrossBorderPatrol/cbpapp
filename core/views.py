@@ -1,5 +1,6 @@
 import json
 import logging
+import urllib
 
 from django.http import HttpResponse, JsonResponse
 from django.shortcuts import render
@@ -8,6 +9,17 @@ import requests
 
 
 logger = logging.getLogger(__name__)
+
+
+class HashedNameServiceClient(object):
+    def __init__(self):
+        super(HashedNameServiceClient, self).__init__()
+
+    def name_to_hash(self, name):
+        return requests.get(f"http://35.178.109.215/name2hash/{urllib.parse.quote(name)}").text
+
+    def hash_to_name(arg, hash):
+        return urllib.parse.unquote(requests.get(f"http://35.178.109.215/hash2name/{hash}").text)
 
 
 class N1AnalyticsClient(object):
