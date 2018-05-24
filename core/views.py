@@ -1,6 +1,7 @@
 import json
 import logging
 import urllib
+from operator import itemgetter
 
 from django.http import HttpResponse, JsonResponse
 from django.shortcuts import render
@@ -54,6 +55,20 @@ class N1AnalyticsClient(object):
                 logger.error('waiting...')
                 logger.debug(response.json()["info"]["status"])
                 response = requests.get(url)
+
+            logger.error('GET response: ' + json.dumps(response.json()))
+
+            j = response.json()
+
+            activities = j['res']['receivers']['activities']
+            newlist = sorted(activities, key=itemgetter('c'), reverse=True) 
+
+            logger.error(type(newlist))
+            logger.error(json.dumps(newlist))
+
+            j['res']['receivers']['activities'] = newlist
+
+            return j
 
         except Exception as e:
             logger.error(e)
