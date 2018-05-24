@@ -12,6 +12,7 @@
   <table class="table table-striped">
     <thead class="thead-dark">
       <tr>
+        <th scope="col">Secure?</th>
   			<th scope="col">Token</th>
   			<th scope="col">Score</th>
   		</tr>
@@ -19,9 +20,10 @@
     <tbody>
       {% for i in response.res.receivers.activities %}
       <tr>
-          		<td><a href="detail?token={{ i.a }}">{{ i.a }}</a></td>
-          		<td>{{ i.c }}</td>
-          	</tr>
+        <td><i class="fa fa-lock" aria-hidden="true"></i></td>
+        <td><a href="detail?token={{ i.a }}">{{ i.a }}</a></td>
+        <td>{{ i.c }}</td>
+      </tr>
       {% endfor %}
     </tbody>
   </table>
