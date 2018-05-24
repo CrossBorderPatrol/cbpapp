@@ -29,15 +29,14 @@ class N1AnalyticsClient(object):
     def __init__(self):
         super(N1AnalyticsClient, self).__init__()
 
-    def get_bank_runs(self, hash):
-        url = "http://35.178.21.231/v1/graphs/bank-200/runs"
+    def get_bank_runs(self, hash, threshold=10):
+        url = "http://35.178.21.231:9002/v1/graphs/bank-200/runs"
         payload = {
           "typ": "http://schema.n1analytics.com/envelope/1",
           "pyl": {
             "@context": "https://schema.n1analytics.com/aml/1/investigationRequest",
-            #"targetID": "4fd7584814066639ceaaaeacfc836abe06e806bb6238489e86846600ba9b0ce0",
-            "targetID": hash,
-            "threshold": 3
+            "targetID": hash, # 4fd7584814066639ceaaaeacfc836abe06e806bb6238489e86846600ba9b0ce0
+            "threshold": threshold,
           }
         }
 
