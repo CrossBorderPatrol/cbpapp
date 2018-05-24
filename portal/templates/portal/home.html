@@ -20,14 +20,25 @@
     <tbody>
       {% for i in response.res.receivers.activities %}
       <tr>
-        <td><i class="fa fa-lock" aria-hidden="true" style="color: green"></i></td>
+      	{% if forloop.first %}
+            <td><i class="fa fa-unlock" aria-hidden="true" style="color: green"></i></td>
+        {% else %}
+        	<td><i class="fa fa-lock" aria-hidden="true" style="color: red"></i></td>
+        {% endif %}
+        
         <td><a href="detail?token={{ i.a }}">{{ i.a }}</a></td>
         <td>{{ i.c }}</td>
       </tr>
       {% endfor %}
     </tbody>
+    <tfoot>
+      {% if response %}
+      <tr>
+        <button class="btn btn-outline-success my-2 my-sm-0">Download</button>
+      </tr>
+      {% endif %}
+    </tfoot>
   </table>
-  <button class="btn btn-outline-success my-2 my-sm-0">Download</button>
 </p>
 
 {% endblock content %}
