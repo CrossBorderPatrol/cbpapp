@@ -6,7 +6,7 @@ IDENTIFIER_CHOICES = (
 
 class SubjectOfInterestRequestForm(forms.Form):
     code_name = forms.CharField()
-    name = forms.CharField(required=True)
+    name = forms.CharField(required=True, initial="JOHNIE BAUMKIRCHNER")
     address = forms.CharField(widget=forms.Textarea)
     #subject_identifier_type = forms.MultipleChoiceField(
     #    widget=forms.RadioSelect,
