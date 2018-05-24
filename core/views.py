@@ -41,7 +41,7 @@ class N1AnalyticsClient(object):
         }
 
         try:
-            #raise Exception()
+            raise Exception()
 
             response = requests.post(url, json=payload)
             url = response.json()['@id']

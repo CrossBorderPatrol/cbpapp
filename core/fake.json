@@ -9,8 +9,20 @@
             "@context": "https://schema.n1analytics.com/aml/1/activityMap",
             "activities": [
                 {
-                    "a": "ed830e6ae4766776eae838cf1d3e1af873aa10975f7cb8c9d72bf3a4ff545dd0",
-                    "c": 10
+                  "a": "cX6Vm8qcsqpDQJtzFcU7",
+                  "c": 14.376126361
+                },
+                {
+                  "a": "KeS3H4FFWfB4bdZnliev",
+                  "c": 11.2031636671
+                },
+                {
+                  "a": "iRKG4uYxKRWuBa6psK22",
+                  "c": 12.6868006042
+                },
+                {
+                  "a": "adzhPj8Ck3xCnrguGhdO",
+                  "c": 39.7505294094
                 }
             ]
         }
