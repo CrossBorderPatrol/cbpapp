@@ -7,9 +7,7 @@ from django.shortcuts import render
 
 import requests
 
-
 logger = logging.getLogger(__name__)
-
 
 class HashedNameServiceClient(object):
     def __init__(self):
@@ -30,7 +28,7 @@ class N1AnalyticsClient(object):
         super(N1AnalyticsClient, self).__init__()
 
     def get_bank_runs(self, hash, threshold=10):
-        url = "http://35.178.21.231:9002/v1/graphs/bank-200/runs"
+        url = "http://18.130.36.127:9002/v1/graphs/bank-200/runs"
         payload = {
           "typ": "http://schema.n1analytics.com/envelope/1",
           "pyl": {
@@ -40,18 +38,27 @@ class N1AnalyticsClient(object):
           }
         }
 
+        logger.error('hash: ' + hash)
+        logger.error('url: ' + url)
+        logger.error('payload: ' + json.dumps(payload))
+
         try:
-            raise Exception()
-
+            logger.error('Sending POST ...')
             response = requests.post(url, json=payload)
-            url = response.json()['@id']
+            logger.error('POST response: ' + json.dumps(response.json()))
 
+            url = response.json()['@id']
             response = requests.get(url)
 
             while response.json()["info"]["status"] == "RUNNING":
+                logger.error('waiting...')
                 logger.debug(response.json()["info"]["status"])
                 response = requests.get(url)
-        except:
+
+        except Exception as e:
+            logger.error(e)
+            logger.error('Something went wrong, using fake data ...')
+
             with open('core/fake.json', 'rb') as f:
                 data = json.loads(f.read())
 
