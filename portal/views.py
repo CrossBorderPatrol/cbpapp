@@ -46,9 +46,15 @@ def subject_of_interest_request_detail(request):
     token = request.GET["token"]
 
     hasher = HashedNameServiceClient()
-    response = hasher.hash_to_name(token)
+    response = hasher.hash_to_info(token)
 
-    return render(request, 'portal/subject_of_interest_request_detail.html', {'token': token, 'response': response})
+    logger.error("details: " + json.dumps(response))
+    logger.error(type(response))
+
+    r = json.loads(response)
+    logger.error(type(r))
+
+    return render(request, 'portal/subject_of_interest_request_detail.html', {'token': token, 'response': r})
 
 class SubjectOfInterestRequestView(FormView):
     template_name = 'subject_of_interest_request.html'

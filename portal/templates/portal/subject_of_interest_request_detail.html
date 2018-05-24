@@ -3,6 +3,63 @@
 
 <h3>Token {{ token }}</h3>
 
-{{ response }}
+<table class="table table-striped">
+    <tbody>
+    	<tr>
+    		<th>Account Number</th>
+    		<td>{{ response.account_number }}</td>
+    	</tr>
+
+    	<tr>
+    		<th>Entity Type</th>
+    		<td>{{ response.entity_type }}</td>
+    	</tr>
+
+    	<tr>
+    		<th>Salary or Turnover</th>
+    		<td>{{ response.salary_or_turnover }}</td>
+    	</tr>
+
+    	<tr>
+    		<th>Bank Name</th>
+    		<td>{{ response.bank_name }}</td>
+    	</tr>
+
+    	<tr>
+    		<th>Name</th>
+    		<td>{{ response.name }}</td>
+    	</tr>
+
+    	<tr>
+    		<th>Customer ID</th>
+    		<td>{{ response.customer_id }}</td>
+    	</tr>
+
+    	<tr>
+    		<th>Entity LEI Code</th>
+    		<td>{{ response.entity_lei_code }}</td>
+    	</tr>
+
+    	<tr>
+    		<th>DOB Individual</th>
+    		<td>{{ response.dob_individual }}</td>
+    	</tr>
+
+    	<tr>
+    		<th>Nationality</th>
+    		<td>{{ response.nationality }}</td>
+    	</tr>
+
+    	<tr>
+    		<th>Address</th>
+    		<td>{{ response.address }}</td>
+    	</tr>
+
+    	<tr>
+    		<th>Occupation</th>
+    		<td>{{ response.occupation }}</td>
+    	</tr>
+    </tbody>
+</table>
 
 {% endblock content %}
