@@ -21,6 +21,9 @@ class HashedNameServiceClient(object):
     def hash_to_name(arg, hash):
         return urllib.parse.unquote(requests.get(f"http://35.178.109.215:5000/hash2name/{hash}").text)
 
+    def hash_to_info(arg, hash):
+        return urllib.parse.unquote(requests.get(f"http://35.178.109.215:5000/hash2info/{hash}").text)
+
 
 class N1AnalyticsClient(object):
     def __init__(self):
