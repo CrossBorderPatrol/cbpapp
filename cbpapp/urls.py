@@ -19,7 +19,7 @@ from django.views.generic.base import RedirectView
 
 
 urlpatterns = [
-    path('', RedirectView.as_view(url='/portal')),
+    path('', RedirectView.as_view(url='/portal'), name='site-index'),
     # path('', RedirectView.as_view(url=reverse('portal:index'))),
     path('app/', include(('core.urls', 'core'), namespace='app')),
     path('portal/', include(('portal.urls', 'portal'), namespace='portal')),
