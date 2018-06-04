@@ -15,13 +15,13 @@ class HashedNameServiceClient(object):
         super(HashedNameServiceClient, self).__init__()
 
     def name_to_hash(self, name):
-        return requests.get(f"http://35.178.109.215:5000/name2hash/{urllib.parse.quote(name)}").text
+        return requests.get(f"https://cbp-id-provider.herokuapp.com/name2hash/{urllib.parse.quote(name)}").text
 
     def hash_to_name(arg, hash):
-        return urllib.parse.unquote(requests.get(f"http://35.178.109.215:5000/hash2name/{hash}").text)
+        return urllib.parse.unquote(requests.get(f"https://cbp-id-provider.herokuapp.com/hash2name/{hash}").text)
 
     def hash_to_info(arg, hash):
-        return urllib.parse.unquote(requests.get(f"http://35.178.109.215:5000/hash2info/{hash}").text)
+        return urllib.parse.unquote(requests.get(f"https://cbp-id-provider.herokuapp.com/hash2info/{hash}").text)
 
 
 class N1AnalyticsClient(object):
