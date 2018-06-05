@@ -29,7 +29,7 @@ class N1AnalyticsClient(object):
         super(N1AnalyticsClient, self).__init__()
 
     def get_bank_runs(self, hash, threshold=10):
-        url = "http://18.130.36.127:9002/v1/graphs/bank-200/runs"
+        url = "https://cbp-engine.herokuapp.com/v1/graphs/bank-200/runs"
         payload = {
           "typ": "http://schema.n1analytics.com/envelope/1",
           "pyl": {
